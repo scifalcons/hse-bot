@@ -1,0 +1,12 @@
+#+title: HSE Telegram bot
+#+author: scifalcons
+
+* How to run
+
+1. Install [[https://docs.astral.sh/uv/][uv]]
+2. Run ~export BOT_TOKEN="<your_bot_token>"~
+2. Run ~make run~
+
+* How to develop
+
+Run ~make lint~ to format & lint project
