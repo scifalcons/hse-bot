@@ -102,7 +102,7 @@ untyped_calls_exclude = [
 ]
 
 [[tool.mypy.overrides]]
-module = []
+module = ["telebot.*"]
 follow_untyped_imports = true
 
 [tool.uv.sources]

@@ -1,6 +1,7 @@
 import logging
 
 from telebot import TeleBot
+from telebot.types import Message
 
 log = logging.getLogger(__name__)
 
@@ -9,15 +10,14 @@ SPECIAL_MENTION = "@all"
 
 def init(bot: TeleBot) -> None:
     @bot.message_handler(commands=["start"])
-    def main(message):
+    def main(message: Message) -> None:
         bot.send_message(message.chat.id, "hello")
-        bot.send_message(message.chat.id, message)
 
     @bot.message_handler(
         func=lambda message: message.chat.type in ["group", "supergroup"]
         and SPECIAL_MENTION in message.text.lower()
     )
-    def mention_all_admins(message):
+    def mention_all_admins(message: Message) -> None:
         chat_id = message.chat.id
 
         admins = bot.get_chat_administrators(chat_id)

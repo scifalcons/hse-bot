@@ -2,9 +2,8 @@ format:
 	uv run ruff format
 
 lint: format
-	uv run ruff check --fix; \
-	uv run mypy .; \
-	uv run codespell --write-changes --skip htmlcov .
+	uv run ruff check --fix
+	uv run mypy .
 
 lint-wps: lint
 	uv run flake8 . --select=WPS
