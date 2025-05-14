@@ -1,15 +1,21 @@
-import telebot # type: ignore
+import telebot  # type: ignore
 
-bot = telebot.TeleBot('')
+bot = telebot.TeleBot("")
 
-@bot.message_handler(commands=['start'])
+
+@bot.message_handler(commands=["start"])
 def main(message):
-    bot.send_message(message.chat.id, 'hello')
+    bot.send_message(message.chat.id, "hello")
     bot.send_message(message.chat.id, message)
 
-SPECIAL_MENTION = '@all'
 
-@bot.message_handler(func=lambda message: message.chat.type in ['group', 'supergroup'] and SPECIAL_MENTION in message.text.lower())
+SPECIAL_MENTION = "@all"
+
+
+@bot.message_handler(
+    func=lambda message: message.chat.type in ["group", "supergroup"]
+    and SPECIAL_MENTION in message.text.lower()
+)
 def mention_all_admins(message):
     chat_id = message.chat.id
 
@@ -26,6 +32,7 @@ def mention_all_admins(message):
     else:
         reply_text = "Не удалось получить список администраторов."
 
-    bot.send_message(chat_id, reply_text, parse_mode='HTML')
+    bot.send_message(chat_id, reply_text, parse_mode="HTML")
+
 
 bot.polling(none_stop=True)
