@@ -13,6 +13,7 @@ def init(bot: TeleBot) -> None:
     def main(message: Message) -> None:
         bot.send_message(message.chat.id, "hello")
 
+    # TODO: decompose filter into own function
     @bot.message_handler(
         func=lambda message: message.chat.type in ["group", "supergroup"]
         and SPECIAL_MENTION in message.text.lower()
